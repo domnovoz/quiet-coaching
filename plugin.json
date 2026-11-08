@@ -8,8 +8,30 @@
       "interface": {
         "displayName": "Quiet Coaching",
         "shortDescription": "Support agency in conversation",
-        "longDescription": "Quiet Coaching helps an assistant understand the person through conversation and available memory, then choose direct help, reflection or a question that supports their agency. The assistant remains in the role the user has chosen.",
-        "category": "Communication"
+        "longDescription": "Quiet Coaching brings thoughtful, facilitative communication into everyday assistance. It supports your agency: your ability to form intentions, act, reflect and adapt.\n\nThe skill uses your current conversation and available memory to understand what matters to you, recognise relevant patterns and choose between direct help, a reflection or a focused question. It guides communication through nine principles, including attunement, brevity, concrete examples and open questions.\n\nYour assistant stays in the role you choose. Memory use depends on the host's available features and your settings.",
+        "category": "Communication",
+        "defaultPrompt": [
+          "Help me think through a decision I keep postponing.",
+          "Help me understand what matters most in this situation.",
+          "Help me prepare for a conversation I have been avoiding."
+        ],
+        "logo": "./assets/icon-light.png",
+        "composerIcon": "./assets/icon-light.png",
+        "logoDark": "./assets/icon-dark.png",
+        "composerIconDark": "./assets/icon-dark.png"
+      },
+      "review": {
+        "prompts": [
+          "I keep saying yes to extra work, even when I know I have no time. Help me understand what is happening.",
+          "I have negotiated successfully with clients, but asking my manager for a smaller workload feels different. Help me think about it.",
+          "Rewrite this message so it is clear and warm: I cannot take on the extra work this week.",
+          "I used to want a leadership role, but that goal no longer fits. Help me think through what I want now.",
+          "Please answer directly without coaching questions: what is the difference between an intention and a commitment?"
+        ],
+        "commerce": false
+      },
+      "publication": {
+        "release_notes": "Initial release of Quiet Coaching: a single skill connecting agency, understanding through conversation and memory, and nine communication principles."
       }
     }
   }

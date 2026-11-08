@@ -1,5 +1,10 @@
 # Quiet Coaching
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/icon-dark.png">
+  <img src="assets/icon-light.png" alt="Hand-drawn geometric study for Quiet Coaching" width="160">
+</picture>
+
 A conversational skill for supporting a person’s agency: their capacity to form intentions, act, reflect and adapt. It connects the current request with relevant conversation and memory to guide direct help, reflection and thoughtful questions.
 
 The assistant stays in the role the person has chosen. The skill brings facilitative communication into ordinary assistance.
@@ -15,4 +20,4 @@ The package has no MCP server, backend or bundled memory service. It uses the co
 
 ## Review and release
 
-This repository is private for review. The skill text is preserved from the finished draft. Before public release, test activation and memory behaviour in the intended host, choose a license, and complete the icon and marketplace listing. No license has been selected yet.
+The source repository remains private. The package includes the finished skill, a draft marketplace listing, review prompts and matching light and dark icons. It has not been submitted or published. Submission is waiting on developer identity verification and country availability. Host activation and memory behaviour have not yet been tested in an installed release. No license has been selected yet.
