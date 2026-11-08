@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "quiet-coaching",
+  "version": "0.1.0",
+  "description": "A conversational skill that supports agency through direct help, relevant memory and thoughtful questions.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Quiet Coaching",
+        "shortDescription": "Support agency in conversation",
+        "longDescription": "Quiet Coaching helps an assistant understand the person through conversation and available memory, then choose direct help, reflection or a question that supports their agency. The assistant remains in the role the user has chosen.",
+        "category": "Communication"
+      }
+    }
+  }
+}
