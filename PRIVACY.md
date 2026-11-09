@@ -1,7 +1,9 @@
 # Privacy
 
-Quiet Coaching is a set of instructions. This version has no server, analytics or independent memory service operated by its creator, Dominik Novozámský, and does not itself send conversations to him.
+Quiet Coaching is a conversational skill. On its own, it does not send conversations to its creator, Dominik Novozámský. The assistant providing your conversation may process and retain messages and memories under its own terms, privacy policy and your settings.
 
-The assistant providing the conversation may process and retain your messages and memories according to its own terms, privacy policy and your settings. Quiet Coaching can guide the assistant to use memory where the host makes it available. You can manage memory and other data controls in the host product.
+Cognitive Insights is a separate, invitation-only connection. When you explicitly agree to share a specific excerpt, your assistant can send it to a service operated by Dominik. The service stores the excerpt on Cloudflare, passes it to a private Codex runner for analysis by its AI provider, and stores the resulting observations so your assistant can retrieve them. Do not send an entire conversation or another person's private information. The service does not automatically receive your conversations or memories.
 
-If you contact support, Dominik receives your email address and the information in your message to respond to your request. Email is handled by the email providers involved, including Gmail, and messages are retained in the support mailbox until deleted. You can ask for your message to be deleted by emailing the [support address](SUPPORT.md).
+The service removes the excerpt from its active database when analysis finishes, and expires jobs and results after 24 hours, with periodic cleanup. You can ask your assistant to delete a job sooner. Cloudflare's database recovery history may retain deleted information for up to seven days; deletion cannot necessarily stop an analysis that has already started. Cloudflare and the AI provider may also process or retain data under their own policies. Insights are tentative interpretations, not diagnoses.
+
+If you contact support, Dominik receives your email address and the information in your message to respond. Email is handled by the providers involved, including Gmail, and retained in the support mailbox until deleted. For questions or deletion requests, email the [support address](SUPPORT.md).

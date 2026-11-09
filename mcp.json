@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "quiet-coaching-cognitive-insights": {
+      "type": "streamable-http",
+      "url": "https://quiet-coaching-cognitive-insights.domnovoz.workers.dev/mcp",
+      "extensions": {
+        "com.openai": {
+          "auth": {
+            "type": "oauth"
+          }
+        }
+      }
+    }
+  }
+}

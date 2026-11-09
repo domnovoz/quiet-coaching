@@ -1,14 +1,14 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "quiet-coaching",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A conversational skill that supports agency through direct help, relevant memory and thoughtful questions.",
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Quiet Coaching",
         "shortDescription": "Support agency in conversation",
-        "longDescription": "Quiet Coaching brings thoughtful, facilitative communication into everyday assistance. It supports your agency: your ability to form intentions, act, reflect and adapt.\n\nThe skill uses your current conversation and available memory to understand what matters to you, recognise relevant patterns and choose between direct help, a reflection or a focused question. It guides communication through nine principles, including attunement, brevity, concrete examples and open questions.\n\nYour assistant stays in the role you choose. Memory use depends on the host's available features and your settings.",
+        "longDescription": "Quiet Coaching brings thoughtful, facilitative communication into everyday assistance. It supports your agency: your ability to form intentions, act, reflect and adapt.\n\nThe skill uses your current conversation and available memory to understand what matters to you, recognise relevant patterns and choose between direct help, a reflection or a focused question. It guides communication through nine principles, including attunement, brevity, concrete examples and open questions.\n\nYour assistant stays in the role you choose. Memory use depends on the host's available features and your settings.\n\nAn optional, invitation-only Cognitive Insights connection can analyze a short excerpt you choose to share. The service stores it temporarily on Cloudflare and processes it using a private Codex runner and its AI provider. Your assistant should ask for your explicit permission for each excerpt.",
         "category": "Communication",
         "websiteURL": "https://github.com/domnovoz/quiet-coaching",
         "supportURL": "https://github.com/domnovoz/quiet-coaching/blob/main/SUPPORT.md",
@@ -36,7 +36,7 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Initial release of Quiet Coaching: a single skill connecting agency, understanding through conversation and memory, and nine communication principles.",
+        "release_notes": "Adds an optional, invitation-only Cognitive Insights connection alongside the Quiet Coaching skill.",
         "countries": []
       }
     }
