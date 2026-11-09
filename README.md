@@ -20,4 +20,4 @@ The package has no MCP server, backend or bundled memory service. It uses the co
 
 ## Review and release
 
-The source repository remains private. The package includes the finished skill, a draft marketplace listing, review prompts and matching light and dark icons. Publication is intended under Dominik Novozámský, without country restrictions. The package has not yet been uploaded, submitted or published. Host activation and memory behaviour have not yet been tested in an installed release. No license has been selected yet.
+The source repository remains private. Version 0.1.0 has been uploaded as a draft under Dominik Novozámský, with no country restrictions. The portal currently blocks submission because it is not accepting further skills-only submissions and requires website, support, privacy policy and terms of service URLs. The skill check was still running when last inspected. The plugin has not been submitted or published. Host activation and memory behaviour have not yet been tested in an installed release. No license has been selected yet.
