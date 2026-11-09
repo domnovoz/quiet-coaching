@@ -18,7 +18,8 @@
         "logo": "./assets/icon-light.png",
         "composerIcon": "./assets/icon-light.png",
         "logoDark": "./assets/icon-dark.png",
-        "composerIconDark": "./assets/icon-dark.png"
+        "composerIconDark": "./assets/icon-dark.png",
+        "developerName": "Dominik Novozámský"
       },
       "review": {
         "prompts": [
@@ -31,8 +32,12 @@
         "commerce": false
       },
       "publication": {
-        "release_notes": "Initial release of Quiet Coaching: a single skill connecting agency, understanding through conversation and memory, and nine communication principles."
+        "release_notes": "Initial release of Quiet Coaching: a single skill connecting agency, understanding through conversation and memory, and nine communication principles.",
+        "countries": []
       }
     }
+  },
+  "author": {
+    "name": "Dominik Novozámský"
   }
 }
