@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "description": "A conversational skill for supporting agency through direct help, relevant memory and thoughtful questions.",
   "author": "Dominik Novozámský",
+  "repository": { "type": "git", "url": "https://github.com/domnovoz/quiet-coaching.git" },
+  "homepage": "https://github.com/domnovoz/quiet-coaching#readme",
   "license": "UNLICENSED",
   "keywords": ["agent-skills", "coaching", "agency", "codex", "chatgpt"],
-  "files": ["skills/", "plugin.json", "assets/"]
+  "files": ["skills/", "plugin.json", "assets/", "SUPPORT.md", "PRIVACY.md", "TERMS.md"]
 }

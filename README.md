@@ -15,7 +15,7 @@ The assistant stays in the role the person has chosen. The skill brings facilita
 
 ## Install from npm
 
-Once the package is published, download it into a project with:
+Download it into a project with:
 
 ```sh
 npm install quiet-coaching
