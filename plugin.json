@@ -10,6 +10,10 @@
         "shortDescription": "Support agency in conversation",
         "longDescription": "Quiet Coaching brings thoughtful, facilitative communication into everyday assistance. It supports your agency: your ability to form intentions, act, reflect and adapt.\n\nThe skill uses your current conversation and available memory to understand what matters to you, recognise relevant patterns and choose between direct help, a reflection or a focused question. It guides communication through nine principles, including attunement, brevity, concrete examples and open questions.\n\nYour assistant stays in the role you choose. Memory use depends on the host's available features and your settings.",
         "category": "Communication",
+        "websiteURL": "https://github.com/domnovoz/quiet-coaching",
+        "supportURL": "https://github.com/domnovoz/quiet-coaching/blob/main/SUPPORT.md",
+        "privacyPolicyURL": "https://github.com/domnovoz/quiet-coaching/blob/main/PRIVACY.md",
+        "termsOfServiceURL": "https://github.com/domnovoz/quiet-coaching/blob/main/TERMS.md",
         "defaultPrompt": [
           "Help me think through a decision I keep postponing.",
           "Help me understand what matters most in this situation.",

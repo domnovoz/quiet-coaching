@@ -11,6 +11,20 @@ The assistant stays in the role the person has chosen. The skill brings facilita
 
 [Read the skill](skills/quiet-coaching/SKILL.md).
 
+[Support](SUPPORT.md) · [Privacy](PRIVACY.md) · [Terms](TERMS.md)
+
+## Install from npm
+
+Once the package is published, download it into a project with:
+
+```sh
+npm install quiet-coaching
+```
+
+The skill is then available at `node_modules/quiet-coaching/skills/quiet-coaching/SKILL.md`. Follow your assistant's instructions for installing or loading a skill from that folder. Installing the npm package alone does not activate the skill.
+
+The npm package contains the skill, plugin manifest and icons. It does not include an MCP server or connect to a third-party service.
+
 ## Source
 
 - `skills/quiet-coaching/SKILL.md` contains the complete skill and is the canonical source for edits.
@@ -18,6 +32,6 @@ The assistant stays in the role the person has chosen. The skill brings facilita
 
 The package has no MCP server, backend or bundled memory service. It uses the conversation and memory capabilities available in the host.
 
-## Review and release
+## License
 
-The source repository remains private. Version 0.1.0 has been uploaded as a draft under Dominik Novozámský, with no country restrictions. The portal currently blocks submission because it is not accepting further skills-only submissions and requires website, support, privacy policy and terms of service URLs. The skill check was still running when last inspected. The plugin has not been submitted or published. Host activation and memory behaviour have not yet been tested in an installed release. No license has been selected yet.
+No license has been selected yet.
