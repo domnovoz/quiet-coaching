@@ -3,14 +3,7 @@
   "mcpServers": {
     "quiet-coaching-cognitive-insights": {
       "type": "streamable-http",
-      "url": "https://quiet-coaching-cognitive-insights.domnovoz.workers.dev/mcp",
-      "extensions": {
-        "com.openai": {
-          "auth": {
-            "type": "oauth"
-          }
-        }
-      }
+      "url": "https://quiet-coaching-cognitive-insights.domnovoz.workers.dev/mcp"
     }
   }
 }
