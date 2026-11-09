@@ -20,4 +20,4 @@ The package has no MCP server, backend or bundled memory service. It uses the co
 
 ## Review and release
 
-The source repository remains private. The package includes the finished skill, a draft marketplace listing, review prompts and matching light and dark icons. It has not been submitted or published. Submission is waiting on developer identity verification and country availability. Host activation and memory behaviour have not yet been tested in an installed release. No license has been selected yet.
+The source repository remains private. The package includes the finished skill, a draft marketplace listing, review prompts and matching light and dark icons. Publication is intended under Dominik Novozámský, without country restrictions. The package has not yet been uploaded, submitted or published. Host activation and memory behaviour have not yet been tested in an installed release. No license has been selected yet.
