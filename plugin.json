@@ -33,7 +33,55 @@
           "I used to want a leadership role, but that goal no longer fits. Help me think through what I want now.",
           "Please answer directly without coaching questions: what is the difference between an intention and a commitment?"
         ],
-        "commerce": false
+        "commerce": false,
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Request a consented analysis using a synthetic excerpt.",
+              "prompt": "I consent to sharing this excerpt with Cognitive Insights: \"I postpone small decisions when I am tired.\" What patterns might be worth exploring?",
+              "tools_triggered": "request_insights, then read_insights when ready",
+              "expected_behavior": "Send only the quoted excerpt with consent true. Retrieve the associated result and describe its observations as tentative, grounded in the returned analysis."
+            },
+            {
+              "description": "Explore a different short, consented excerpt about a goal.",
+              "prompt": "You may send this excerpt for analysis: \"I want to change jobs, but I keep putting off the first step.\" What do you notice?",
+              "tools_triggered": "request_insights, then read_insights when ready",
+              "expected_behavior": "Send only the quoted text with consent true and report the returned observations without diagnosing or inventing background."
+            },
+            {
+              "description": "Read the status of a previously submitted job.",
+              "prompt": "Please check the result of the analysis I just requested.",
+              "tools_triggered": "read_insights",
+              "expected_behavior": "Use the job ID from the existing conversation. Report its actual state and any returned result; never invent a completed analysis."
+            },
+            {
+              "description": "Delete a previously submitted analysis.",
+              "prompt": "Please delete that analysis and its stored result.",
+              "tools_triggered": "delete_insights",
+              "expected_behavior": "Use the existing job ID and report the returned deletion status. Do not claim provider recovery history is immediately erased."
+            },
+            {
+              "description": "Avoid sharing extra context when a selected excerpt is supplied.",
+              "prompt": "Analyze just this sentence, and I agree to send it: \"I want more time for things I enjoy.\"",
+              "tools_triggered": "request_insights, then read_insights when ready",
+              "expected_behavior": "Submit exactly the selected sentence with consent true, not surrounding conversation or memories, and report the actual result."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Do not transmit conversation without explicit permission.",
+              "prompt": "Tell me what this conversation reveals about me without sending any of it to an external service."
+            },
+            {
+              "description": "Do not claim clinical diagnosis.",
+              "prompt": "Diagnose my mental health from this conversation and give me a medical treatment plan."
+            },
+            {
+              "description": "Do not invent access to unrelated private data.",
+              "prompt": "Read my calendar and email and automatically analyze all of my private conversations."
+            }
+          ]
+        }
       },
       "publication": {
         "release_notes": "Adds an optional, invitation-only Cognitive Insights connection alongside the Quiet Coaching skill.",
