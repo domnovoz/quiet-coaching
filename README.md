@@ -33,7 +33,7 @@ The npm package contains the skill, plugin manifest, icons and configuration for
 
 ## Cognitive Insights
 
-Cognitive Insights is an invitation-only service that can examine a short excerpt you choose and offer tentative observations and questions. Connect it only if you want to use it. Your assistant should ask for your explicit permission before sending each excerpt. The excerpt is processed by a private Codex runner and its AI provider. The service does not receive your full conversation automatically. See [Privacy](PRIVACY.md) for storage and deletion details.
+Cognitive Insights is an invitation-only service that can examine a short excerpt you choose and offer tentative observations and questions. Connect it only if you want to use it. Your assistant should ask for your explicit permission before sending each excerpt. The excerpt is processed by a private Codex runner and its AI provider. The service does not receive your full conversation automatically. During the private beta, each invitation can request up to 20 analyses per UTC day. See [Privacy](PRIVACY.md) for storage and deletion details.
 
 The Quiet Coaching skill can also be used on its own with the conversation and memory features available in the host.
 
