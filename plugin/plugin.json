@@ -85,7 +85,7 @@
         "demo_recording_url": "https://github.com/domnovoz/quiet-coaching/blob/main/assets/quiet-coaching-demo.mp4"
       },
       "publication": {
-        "release_notes": "Quiet Coaching 1.0: refined skill and a new, openly available Insights connection. Free accounts with username and password, analysis by Cloudflare Workers AI, no excerpt storage, and tools to list and delete saved insights.",
+        "release_notes": "Quiet Coaching 1.0: a refined coaching skill and an openly available Insights connection with simple username sign-in, no excerpt storage, and tools to review and delete saved insights.",
         "countries": []
       }
     }
