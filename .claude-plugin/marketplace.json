@@ -1,0 +1,14 @@
+{
+  "name": "quiet-coaching",
+  "owner": { "name": "Dominik Novozámský", "url": "https://github.com/domnovoz" },
+  "metadata": { "description": "Quiet Coaching for Claude: a coaching-informed conversation skill with an optional Insights connector." },
+  "plugins": [
+    {
+      "name": "quiet-coaching",
+      "source": "./plugin",
+      "description": "Thoughtful, coaching-informed conversation that supports your agency, with an optional Insights connection for excerpts you choose to share.",
+      "version": "1.0.0",
+      "category": "productivity"
+    }
+  ]
+}

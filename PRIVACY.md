@@ -1,9 +1,41 @@
-# Privacy
+# Privacy policy
 
-Quiet Coaching is a conversational skill. On its own, it does not send conversations to its creator, Dominik Novozámský. The assistant providing your conversation may process and retain messages and memories under its own terms, privacy policy and your settings.
+Last updated: 24 November 2026
 
-Cognitive Insights is a separate, invitation-only connection. When you explicitly agree to share a specific excerpt, your assistant can send it to a service operated by Dominik. The service stores the excerpt on Cloudflare, passes it to a private Codex runner for analysis by its AI provider, and stores the resulting observations so your assistant can retrieve them. Do not send entire conversations, another person's private information, credentials, payment card details, government identifiers, medical records or other sensitive personal data. The service screens for some common credential, payment-card and identifier formats, but the checks are incomplete and cannot reliably detect all sensitive data. The service does not automatically receive your conversations or memories. It also stores a daily request count per invitation for usage control; those counters are scheduled for removal after the UTC day ends. It stores invitation identifiers and connection authorization records to control access; these can remain until access is revoked or the records expire.
+Quiet Coaching is published by Dominik Novozámský ("we"). This policy covers the Quiet Coaching skill and the optional Quiet Coaching Insights service at `https://mcp.dominiknovozamsky.com`.
 
-The service removes the excerpt from its active database when analysis finishes, and expires jobs and results after 24 hours, with periodic cleanup. You can ask your assistant to delete a job sooner. Cloudflare's database recovery history may retain deleted information for up to seven days; deletion cannot necessarily stop an analysis that has already started. Cloudflare and the AI provider may also process or retain data under their own policies. Insights are tentative interpretations, not diagnoses.
+## The skill
 
-If you contact support, Dominik receives your email address and the information in your message to respond. Email is handled by the providers involved, including Gmail, and retained in the support mailbox until deleted. For questions or deletion requests, email the [support address](SUPPORT.md).
+The Quiet Coaching skill is a set of instructions that runs inside the assistant you already use, such as ChatGPT or Claude. It sends nothing to us. Your conversations and memory stay with that assistant's provider and are governed by its privacy policy and your settings there.
+
+## Quiet Coaching Insights
+
+Insights is optional. It runs only when you connect it and ask your assistant to analyze a specific excerpt that you agree to share.
+
+**What we collect**
+
+| Data | Why | How long |
+| --- | --- | --- |
+| Username and a salted password hash | To sign you in | Until you delete your account |
+| The excerpt you agree to share | To produce the analysis | Not stored. It is processed in memory and discarded when the analysis returns |
+| The analysis result (patterns, short quotes from your excerpt, interpretations and one question) | So you can review earlier insights | Up to 90 days, or until you delete it |
+| Daily usage counters keyed to your account, and a one-way hash of the network address used to create accounts | Fair use of the free allowance and abuse prevention | Removed after the day ends |
+| Sign-in tokens issued to your assistant | To keep the connection signed in | Access tokens expire after 1 hour, refresh tokens after 90 days |
+| Error logs without excerpt or result content | To keep the service working | Up to 7 days in Cloudflare logs |
+
+We do not ask for your email, name or any other profile information. We do not request or reconstruct your conversation history, memory or files. We do not sell data, use it for advertising, share it with third parties for their own purposes, or use your excerpts or results to train models.
+
+**Who processes it.** The service runs on Cloudflare Workers, D1 and KV, and analysis runs on Cloudflare Workers AI. Cloudflare processes this data on our behalf under the [Cloudflare privacy policy](https://www.cloudflare.com/privacypolicy/). Deleted database records may remain in Cloudflare's point-in-time recovery history for up to 7 days before they are permanently gone.
+
+**What not to share.** Do not share passwords, keys, payment card numbers, government identifiers, health records or other people's private information. The service rejects some of these automatically, but it cannot detect everything.
+
+**Your controls**
+
+- Ask your assistant to list your saved insights, delete one, or delete all of them.
+- Delete your account and everything in it at [mcp.dominiknovozamsky.com/account](https://mcp.dominiknovozamsky.com/account).
+- Disconnect Insights at any time in your assistant's connector or app settings.
+- For any other request, including access or correction, email [domnovoz@gmail.com](mailto:domnovoz@gmail.com).
+
+**Age.** The service is not directed at children under 13. If you are under 18, use it only with the permission of a parent or guardian.
+
+**Changes.** We will update this page and its date when this policy changes.

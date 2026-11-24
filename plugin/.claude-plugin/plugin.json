@@ -1,0 +1,22 @@
+{
+  "name": "quiet-coaching",
+  "version": "1.0.0",
+  "description": "Thoughtful, coaching-informed conversation that supports your agency: direct help when the path is clear, a reflection or one focused question when your own answer matters more. Optional Insights connection highlights patterns in excerpts you choose to share.",
+  "author": {
+    "name": "Dominik Novozámský",
+    "url": "https://github.com/domnovoz"
+  },
+  "homepage": "https://github.com/domnovoz/quiet-coaching",
+  "repository": "https://github.com/domnovoz/quiet-coaching",
+  "license": "UNLICENSED",
+  "keywords": [
+    "coaching",
+    "agency",
+    "reflection",
+    "decisions",
+    "goals",
+    "communication"
+  ],
+  "icon": "./.claude-plugin/icon.png",
+  "privacyPolicyUrl": "https://github.com/domnovoz/quiet-coaching/blob/main/PRIVACY.md"
+}

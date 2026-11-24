@@ -5,38 +5,70 @@
   <img src="assets/icon-light.png" alt="Hand-drawn geometric study for Quiet Coaching" width="160">
 </picture>
 
-A conversational skill for supporting a person’s agency: their capacity to form intentions, act, reflect and adapt. It connects the current request with relevant conversation and memory to guide direct help, reflection and thoughtful questions.
+Coaching-informed conversation for ChatGPT and Claude. Quiet Coaching supports your agency: your ability to choose what you want, act on it, reflect and adapt. When the path is clear you get direct help; when your own answer matters more, you get a precise reflection or one focused question, grounded in what you have said and, where your settings allow, in memory.
 
-The assistant stays in the role the person has chosen. The skill brings facilitative communication into ordinary assistance.
+**Quiet Coaching Insights** is an optional connection. When you want to understand a recurring pattern more deeply, share a short excerpt you choose and get up to three patterns grounded in your own words, a tentative interpretation of each and one open question. Free account, no email needed.
 
-[Read the skill](skills/quiet-coaching/SKILL.md).
+[Read the skill](plugin/skills/quiet-coaching/SKILL.md) · [Privacy](PRIVACY.md) · [Terms](TERMS.md) · [Support](SUPPORT.md)
 
-[Support](SUPPORT.md) · [Privacy](PRIVACY.md) · [Terms](TERMS.md)
+## Install
 
-## Install from npm
+**Claude Code**
 
-Download it into a project with:
+```
+/plugin install quiet-coaching --marketplace domnovoz/quiet-coaching
+```
+
+Or add the marketplace first with `/plugin marketplace add domnovoz/quiet-coaching`, then `/plugin install quiet-coaching@quiet-coaching`.
+
+**Claude (web, desktop, mobile)**
+
+- Skill: download [`quiet-coaching.zip`](https://github.com/domnovoz/quiet-coaching/releases/latest) and upload it in Settings > Capabilities > Skills.
+- Insights: Settings > Connectors > Add custom connector, URL `https://mcp.dominiknovozamsky.com/mcp`, then sign in or create an account.
+
+**ChatGPT**
+
+Install Quiet Coaching from the ChatGPT plugin directory once it is listed. It includes the skill and the Insights connection.
+
+**npm**
 
 ```sh
 npm install quiet-coaching
 ```
 
-The skill is then available at `node_modules/quiet-coaching/skills/quiet-coaching/SKILL.md`. Follow your assistant's instructions for installing or loading a skill from that folder. Installing the npm package alone does not activate the skill.
+The skill is at `node_modules/quiet-coaching/plugin/skills/quiet-coaching/SKILL.md`.
 
-The npm package contains the skill, plugin manifest, icons and configuration for an optional remote MCP connection. Installing it alone does not connect or activate the service.
+## How Insights handles data
 
-## Source
+- Your assistant shows you the exact excerpt and asks before sending it. Nothing else from your conversation or memory is sent.
+- The excerpt is analyzed by Cloudflare Workers AI and not stored. The result is saved to your account for up to 90 days.
+- Ask your assistant to list or delete your insights, or delete your account at [mcp.dominiknovozamsky.com/account](https://mcp.dominiknovozamsky.com/account).
 
-- `skills/quiet-coaching/SKILL.md` contains the complete skill and is the canonical source for edits.
-- `plugin.json` defines the plugin and its listing.
-- `mcp.json` points to the optional Cognitive Insights service.
+Details are in the [privacy policy](PRIVACY.md).
 
-## Cognitive Insights
+## Insights tools
 
-Cognitive Insights is an invitation-only service that can examine a short excerpt you choose and offer tentative observations and questions. Connect it only if you want to use it. Your assistant should ask for your explicit permission before sending each excerpt. Do not share credentials, payment card details, government identifiers, medical records or other sensitive personal data. The excerpt is processed by a private Codex runner and its AI provider. The service does not receive your full conversation automatically. During the private beta, each invitation can request up to 20 analyses per UTC day. See [Privacy](PRIVACY.md) for storage and deletion details.
+| Tool | What it does | Annotations |
+| --- | --- | --- |
+| `analyze_excerpt` | Analyzes an excerpt you agreed to share and saves the result | write, not destructive |
+| `list_insights` | Lists your recent saved insights | read-only |
+| `delete_insight` | Deletes one saved insight | destructive |
+| `delete_all_insights` | Deletes all saved insights | destructive |
 
-The Quiet Coaching skill can also be used on its own with the conversation and memory features available in the host.
+## Repository
+
+```
+plugin/                 the plugin (shared by ChatGPT and Claude)
+  skills/quiet-coaching/SKILL.md
+  plugin.json, mcp.json            ChatGPT plugin manifest and MCP connection
+  .claude-plugin/plugin.json, .mcp.json   Claude plugin manifest and MCP connection
+  assets/                          icons
+mcp/                    Cloudflare Worker for Insights (OAuth, MCP tools, D1, Workers AI)
+.claude-plugin/marketplace.json    Claude marketplace
+```
+
+The Worker runs entirely on Cloudflare's free tier. Production analysis instructions are supplied as a Worker secret and are not part of this repository. Development notes are in [mcp/README.md](mcp/README.md).
 
 ## License
 
-No license has been selected yet.
+All rights reserved. No license has been selected yet.

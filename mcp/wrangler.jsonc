@@ -1,0 +1,19 @@
+{
+  "name": "quiet-coaching-mcp",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": true,
+  "routes": [{ "pattern": "mcp.dominiknovozamsky.com", "custom_domain": true }],
+  "vars": {
+    "PUBLIC_ORIGIN": "https://mcp.dominiknovozamsky.com",
+    "MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+    "GLOBAL_DAILY_LIMIT": "90"
+  },
+  // Secrets (wrangler secret put): EXTRACTOR_PROMPT, HASH_SALT, OPENAI_DOMAIN_CHALLENGE
+  "ai": { "binding": "AI" },
+  "kv_namespaces": [{ "binding": "OAUTH_KV", "id": "a5e1f99b053b41cfa38be9ab974ebfb1" }],
+  "d1_databases": [{ "binding": "DB", "database_name": "quiet-coaching-mcp", "database_id": "68395531-5d0a-4e26-963a-b81bcf4d3897" }],
+  "triggers": { "crons": ["17 3 * * *"] },
+  "observability": { "enabled": true, "head_sampling_rate": 1 }
+}

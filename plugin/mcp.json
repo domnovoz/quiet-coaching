@@ -1,9 +1,9 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
   "mcpServers": {
-    "quiet-coaching-cognitive-insights": {
+    "quiet-coaching-insights": {
       "type": "streamable-http",
-      "url": "https://quiet-coaching-cognitive-insights.domnovoz.workers.dev/mcp"
+      "url": "https://mcp.dominiknovozamsky.com/mcp"
     }
   }
 }

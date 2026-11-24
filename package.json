@@ -1,7 +1,7 @@
 {
   "name": "quiet-coaching",
-  "version": "0.2.1",
-  "description": "A conversational skill for supporting agency through direct help, relevant memory and thoughtful questions.",
+  "version": "1.0.0",
+  "description": "Coaching-informed conversation skill for ChatGPT and Claude, with an optional Insights MCP connection.",
   "author": "Dominik Novozámský",
   "repository": {
     "type": "git",
@@ -13,16 +13,16 @@
     "agent-skills",
     "coaching",
     "agency",
-    "codex",
-    "chatgpt"
+    "chatgpt",
+    "claude",
+    "mcp"
   ],
   "files": [
-    "skills/",
-    "plugin.json",
+    "plugin/",
+    ".claude-plugin/",
     "assets/",
     "SUPPORT.md",
     "PRIVACY.md",
-    "TERMS.md",
-    "mcp.json"
+    "TERMS.md"
   ]
 }

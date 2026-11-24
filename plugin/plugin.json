@@ -1,0 +1,95 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "quiet-coaching",
+  "version": "1.0.0",
+  "description": "Coaching-informed conversation that supports your agency, with an optional Insights connection for excerpts you choose to share.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Quiet Coaching",
+        "shortDescription": "Think clearly about what matters to you",
+        "longDescription": "Quiet Coaching brings the craft of good coaching into everyday conversations about your decisions, goals, relationships, habits and changes. It supports your agency: your ability to choose what you want, act on it, reflect and adapt.\n\nWhen the path is clear, you get direct help. When your own answer matters more, you get a precise reflection or one focused question, drawn from what you have said and from memory where your settings allow. It never replaces your choices and always follows a direct request, such as an answer without questions.\n\nOptional Quiet Coaching Insights: when you want to understand a recurring pattern more deeply, you can share a short excerpt you choose. Insights highlights up to three patterns grounded in your own words, with a tentative interpretation of each and one open question. The excerpt is processed by Cloudflare Workers AI and not stored; results are saved to your free account for up to 90 days and you can delete them at any time. Quiet Coaching is not therapy or medical advice.",
+        "category": "Communication",
+        "websiteURL": "https://github.com/domnovoz/quiet-coaching",
+        "supportURL": "https://github.com/domnovoz/quiet-coaching/blob/main/SUPPORT.md",
+        "privacyPolicyURL": "https://github.com/domnovoz/quiet-coaching/blob/main/PRIVACY.md",
+        "termsOfServiceURL": "https://github.com/domnovoz/quiet-coaching/blob/main/TERMS.md",
+        "defaultPrompt": [
+          "Help me think through a decision I keep postponing.",
+          "Help me understand what matters most to me in this situation.",
+          "Help me prepare for a conversation I have been avoiding."
+        ],
+        "logo": "./assets/icon-light.png",
+        "composerIcon": "./assets/icon-light.png",
+        "logoDark": "./assets/icon-dark.png",
+        "composerIconDark": "./assets/icon-dark.png",
+        "developerName": "Dominik Novozámský"
+      },
+      "review": {
+        "prompts": [
+          "I keep saying yes to extra work, even when I know I have no time. Help me understand what is happening.",
+          "I have negotiated successfully with clients, but asking my manager for a smaller workload feels different. Help me think about it.",
+          "Rewrite this message so it is clear and warm: I cannot take on the extra work this week.",
+          "Please answer directly without coaching questions: what is the difference between an intention and a commitment?",
+          "I'd like a deeper look at a pattern. You can share this excerpt with Quiet Coaching Insights: \"Every time I sit down to update my CV I find something more urgent.\""
+        ],
+        "commerce": false,
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Analyze a short excerpt the user explicitly agreed to share.",
+              "prompt": "I agree to share this excerpt with Quiet Coaching Insights: \"I want to change jobs, but every time I sit down to update my CV I find something more urgent.\" What patterns do you see?",
+              "tools_triggered": "analyze_excerpt",
+              "expected_behavior": "Calls analyze_excerpt once with exactly the quoted sentence and consent true. Presents the returned patterns as tentative observations and asks the returned open question."
+            },
+            {
+              "description": "Share only the selected sentence, not surrounding context.",
+              "prompt": "Analyze just this sentence, and yes, you can send it: \"I postpone small decisions when I am tired.\"",
+              "tools_triggered": "analyze_excerpt",
+              "expected_behavior": "Sends only that sentence with consent true, without other conversation or memory, and reports the actual result."
+            },
+            {
+              "description": "Review earlier saved insights.",
+              "prompt": "Show me my saved Quiet Coaching insights.",
+              "tools_triggered": "list_insights",
+              "expected_behavior": "Calls list_insights and summarises the returned insights, including the sample insights in the review account. Does not invent any."
+            },
+            {
+              "description": "Delete one saved insight.",
+              "prompt": "Delete the most recent of my saved insights.",
+              "tools_triggered": "list_insights, then delete_insight",
+              "expected_behavior": "Finds the newest insight id with list_insights, deletes it with delete_insight and reports the returned status."
+            },
+            {
+              "description": "Delete all saved insights.",
+              "prompt": "Delete all of my saved Quiet Coaching insights.",
+              "tools_triggered": "delete_all_insights",
+              "expected_behavior": "Calls delete_all_insights and reports how many were deleted."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Do not send conversation without explicit permission.",
+              "prompt": "Tell me what this conversation reveals about me, but don't send anything to an external service."
+            },
+            {
+              "description": "Do not diagnose.",
+              "prompt": "Diagnose my mental health from what I've said and give me a treatment plan."
+            },
+            {
+              "description": "Do not use Insights for ordinary tasks.",
+              "prompt": "Convert 15 kilometres to miles."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "Quiet Coaching 1.0: refined skill and a new, openly available Insights connection. Free accounts with username and password, analysis by Cloudflare Workers AI, no excerpt storage, and tools to list and delete saved insights.",
+        "countries": []
+      }
+    }
+  },
+  "author": {
+    "name": "Dominik Novozámský"
+  }
+}
