@@ -1,4 +1,4 @@
-import OAuthProvider, { AuthorizationError, CimdFetchError } from '@cloudflare/workers-oauth-provider';
+import OAuthProvider, { AuthorizationError, CimdFetchError, authorizationErrorRedirect } from '@cloudflare/workers-oauth-provider';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
 import { z } from 'zod';
@@ -92,26 +92,36 @@ async function ipKey(request, env) {
   return [...new Uint8Array(digest)].slice(0, 12).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+// Pending sign-ins are kept server-side for 10 minutes, keyed by a random handle in the form.
+// This does not depend on a browser cookie, so the flow survives browsers that drop or isolate
+// cookies. Each approval still requires the account password, which is the user's proof of intent.
+const PENDING_TTL = 600;
+
 async function authorize(request, env) {
   const oauth = env.OAUTH_PROVIDER;
   try {
     if (request.method === 'GET') {
       const authRequest = await oauth.parseAuthRequest(request);
       const details = await oauth.describeConsent(authRequest);
-      const consent = await oauth.beginConsent(authRequest);
-      return html(signInPage({ clientName: details.clientName, redirectHost: details.redirectHost, handle: consent.handle }), 200, consent.headers);
+      const handle = crypto.randomUUID();
+      await env.OAUTH_KV.put(`signin:${handle}`, request.url, { expirationTtl: PENDING_TTL });
+      return html(signInPage({ clientName: details.clientName, redirectHost: details.redirectHost, handle }));
     }
     if (request.method !== 'POST') return new Response('Method not allowed', { status: 405 });
     const form = await request.formData();
     const handle = String(form.get('handle') ?? '');
     const action = String(form.get('action') ?? '');
+    const pendingUrl = /^[0-9a-f-]{36}$/.test(handle) ? await env.OAUTH_KV.get(`signin:${handle}`) : null;
+    if (!pendingUrl) return html('<p>This connection request has expired. Please start connecting again from your assistant.</p>', 400);
+    const authRequest = await oauth.parseAuthRequest(new Request(pendingUrl));
     if (action === 'deny') {
-      const denied = await oauth.denyConsent(request, handle);
-      return new Response(null, { status: 302, headers: denied.headers });
+      await env.OAUTH_KV.delete(`signin:${handle}`);
+      return Response.redirect(authorizationErrorRedirect(authRequest, 'access_denied'), 302);
     }
     const username = normalizeUsername(form.get('username'));
     const password = String(form.get('password') ?? '');
-    const retry = error => html(signInPage({ clientName: 'Your assistant', redirectHost: 'your assistant', handle, error, username, mode: action }), 400);
+    const details = await oauth.describeConsent(authRequest);
+    const retry = error => html(signInPage({ clientName: details.clientName, redirectHost: details.redirectHost, handle, error, username, mode: action }), 400);
     let user;
     if (action === 'signup') {
       if (!await consumeAllowance(env.DB, `signup:${await ipKey(request, env)}`, 5, Date.now())) return retry('Too many new accounts from this network today. Please try again tomorrow.');
@@ -123,12 +133,11 @@ async function authorize(request, env) {
       user = await verifyUser(env.DB, username, password);
       if (!user) return retry('That username and password do not match.');
     }
-    const approved = await oauth.approveConsent(request, handle);
-    const { redirectTo } = await oauth.completeAuthorization({ request: approved.request, userId: user.id, metadata: { username: user.username }, scope: approved.request.scope, props: { userId: user.id } });
-    approved.headers.set('Location', redirectTo);
-    approved.headers.set('Cache-Control', 'no-store');
-    return new Response(null, { status: 302, headers: approved.headers });
+    await env.OAUTH_KV.delete(`signin:${handle}`);
+    const { redirectTo } = await oauth.completeAuthorization({ request: authRequest, userId: user.id, metadata: { username: user.username }, scope: authRequest.scope, props: { userId: user.id } });
+    return new Response(null, { status: 302, headers: { Location: redirectTo, 'Cache-Control': 'no-store' } });
   } catch (error) {
+    console.error('authorize_error', request.method, error?.constructor?.name, error?.code, error?.message);
     if (error instanceof AuthorizationError && error.redirectTo) return Response.redirect(error.redirectTo, 302);
     if (error instanceof AuthorizationError || error instanceof CimdFetchError) return html('<p>This connection request has expired or is invalid. Please start connecting again from your assistant.</p>', 400);
     throw error;
