@@ -20,7 +20,7 @@ button{margin-top:1rem;padding:.6rem 1rem;border:0;border-radius:8px;background:
 button.secondary{background:transparent;color:var(--muted);border:1px solid var(--line)}.err{color:var(--err);font-weight:600}a{color:var(--accent)}
 .row{display:flex;gap:.5rem;flex-wrap:wrap}`;
 
-const shell = (title, body) => `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)}</title><style>${style}</style></head><body><main>${body}<p class="muted"><a href="${LINKS.privacy}">Privacy</a> · <a href="${LINKS.terms}">Terms</a> · <a href="${LINKS.support}">Support</a></p></main></body></html>`;
+const shell = (title, body) => `<!doctype html><html lang="en"><head><meta charset="utf-8"><link rel="icon" type="image/png" href="/favicon.png"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(title)}</title><style>${style}</style></head><body><main>${body}<p class="muted"><a href="${LINKS.privacy}">Privacy</a> · <a href="${LINKS.terms}">Terms</a> · <a href="${LINKS.support}">Support</a></p></main></body></html>`;
 
 const dataNote = `<p class="muted">Quiet Coaching Insights analyzes only short excerpts you explicitly agree to share. The excerpt is processed by Cloudflare Workers AI and is not stored. The resulting insights are saved to your account for up to 90 days, and you can delete them at any time. Do not share passwords, payment details, government identifiers or health records.</p>`;
 

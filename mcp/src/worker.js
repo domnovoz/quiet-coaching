@@ -6,6 +6,7 @@ import { limitRequestBody } from './request-limit.js';
 import { createUser, deleteUser, normalizeUsername, verifyUser } from './auth.js';
 import { analyze, consumeAllowance, deleteAllInsights, deleteInsight, listInsights, MAX_EXCERPT, purgeExpired, UserError } from './insights.js';
 import { accountPage, landingPage, signInPage } from './pages.js';
+import { FAVICON_PNG } from './favicon.js';
 
 const VERSION = '1.0.0';
 const html = (body, status = 200, headers = new Headers()) => {
@@ -179,6 +180,10 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const origin = env.PUBLIC_ORIGIN || url.origin;
+    if (request.method === 'GET' && (url.pathname === '/favicon.ico' || url.pathname === '/favicon.png' || url.pathname === '/icon.png')) {
+      const bytes = Uint8Array.from(atob(FAVICON_PNG), c => c.charCodeAt(0));
+      return new Response(bytes, { headers: { 'Content-Type': 'image/png', 'Cache-Control': 'public, max-age=86400' } });
+    }
     if (request.method === 'GET' && url.pathname === '/.well-known/openai-apps-challenge') {
       return env.OPENAI_DOMAIN_CHALLENGE
         ? new Response(env.OPENAI_DOMAIN_CHALLENGE, { headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' } })
