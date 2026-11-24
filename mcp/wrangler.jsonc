@@ -15,5 +15,25 @@
   "kv_namespaces": [{ "binding": "OAUTH_KV", "id": "a5e1f99b053b41cfa38be9ab974ebfb1" }],
   "d1_databases": [{ "binding": "DB", "database_name": "quiet-coaching-mcp", "database_id": "68395531-5d0a-4e26-963a-b81bcf4d3897" }],
   "triggers": { "crons": ["17 3 * * *"] },
-  "observability": { "enabled": true, "head_sampling_rate": 1 }
+  "observability": { "enabled": true, "head_sampling_rate": 1 },
+  // Same service at the original address, which the existing ChatGPT plugin is locked to.
+  // Deploy with: npx wrangler deploy --env chatgpt
+  "env": {
+    "chatgpt": {
+      "name": "quiet-coaching-cognitive-insights",
+      "workers_dev": true,
+      "routes": [],
+      "vars": {
+        "PUBLIC_ORIGIN": "https://quiet-coaching-cognitive-insights.domnovoz.workers.dev",
+        "MODEL": "@cf/meta/llama-3.3-70b-instruct-fp8-fast",
+        "GLOBAL_DAILY_LIMIT": "90",
+        "OPENAI_DOMAIN_CHALLENGE": "JROtKdIedhlUp80kGosD5kWZddp-j0PySJ0cMgs2O0M"
+      },
+      "ai": { "binding": "AI" },
+      "kv_namespaces": [{ "binding": "OAUTH_KV", "id": "a5e1f99b053b41cfa38be9ab974ebfb1" }],
+      "d1_databases": [{ "binding": "DB", "database_name": "quiet-coaching-mcp", "database_id": "68395531-5d0a-4e26-963a-b81bcf4d3897" }],
+      "triggers": { "crons": [] },
+      "observability": { "enabled": true, "head_sampling_rate": 1 }
+    }
+  }
 }

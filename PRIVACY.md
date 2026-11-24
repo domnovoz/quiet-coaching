@@ -2,7 +2,7 @@
 
 Last updated: 24 November 2026
 
-Quiet Coaching is published by Dominik Novozámský ("we"). This policy covers the Quiet Coaching skill and the optional Quiet Coaching Insights service at `https://mcp.dominiknovozamsky.com`.
+Quiet Coaching is published by Dominik Novozámský ("we"). This policy covers the Quiet Coaching skill and the optional Quiet Coaching Insights service at `https://mcp.dominiknovozamsky.com` (also served for ChatGPT at `https://quiet-coaching-cognitive-insights.domnovoz.workers.dev`; both are the same service and database).
 
 ## The skill
 

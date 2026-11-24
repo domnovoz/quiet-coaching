@@ -1,15 +1,15 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "quiet-coaching",
+  "name": "quiet-coaching-insights",
   "version": "1.0.0",
   "description": "Coaching-informed conversation that supports your agency, with an optional Insights connection for excerpts you choose to share.",
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Quiet Coaching",
-        "shortDescription": "Think clearly about what matters to you",
-        "longDescription": "Quiet Coaching brings the craft of good coaching into everyday conversations about your decisions, goals, relationships, habits and changes. It supports your agency: your ability to choose what you want, act on it, reflect and adapt.\n\nWhen the path is clear, you get direct help. When your own answer matters more, you get a precise reflection or one focused question, drawn from what you have said and from memory where your settings allow. It never replaces your choices and always follows a direct request, such as an answer without questions.\n\nOptional Quiet Coaching Insights: when you want to understand a recurring pattern more deeply, you can share a short excerpt you choose. Insights highlights up to three patterns grounded in your own words, with a tentative interpretation of each and one open question. The excerpt is processed by Cloudflare Workers AI and not stored; results are saved to your free account for up to 90 days and you can delete them at any time. Quiet Coaching is not therapy or medical advice.",
-        "category": "Communication",
+        "shortDescription": "Clarity on what matters to you",
+        "longDescription": "Quiet Coaching helps you think through decisions, goals, relationships, habits and changes, so you can choose your next step with more clarity. It brings the craft of good coaching into everyday conversation and supports your agency: your ability to decide what you want, act on it, reflect and adapt.\n\nWhen the path is clear, you get direct help. When your own answer matters more, you get a precise reflection or one focused question, drawn from what you have said and, where your settings allow, from memory. If you ask for a plain answer without questions, that is what you get.\n\nOptional Insights: when you want to understand a recurring pattern more deeply, you can share a short excerpt you choose. Insights highlights up to three patterns grounded in your own words, offers a tentative interpretation of each and one open question. The excerpt is not stored; results are saved to your account for up to 90 days and you can delete them at any time. Quiet Coaching is not therapy or medical advice.",
+        "category": "Productivity",
         "websiteURL": "https://github.com/domnovoz/quiet-coaching",
         "supportURL": "https://github.com/domnovoz/quiet-coaching/blob/main/SUPPORT.md",
         "privacyPolicyURL": "https://github.com/domnovoz/quiet-coaching/blob/main/PRIVACY.md",
@@ -81,7 +81,8 @@
               "prompt": "Convert 15 kilometres to miles."
             }
           ]
-        }
+        },
+        "demo_recording_url": "https://github.com/domnovoz/quiet-coaching/blob/main/assets/quiet-coaching-demo.mp4"
       },
       "publication": {
         "release_notes": "Quiet Coaching 1.0: refined skill and a new, openly available Insights connection. Free accounts with username and password, analysis by Cloudflare Workers AI, no excerpt storage, and tools to list and delete saved insights.",

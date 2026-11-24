@@ -20,7 +20,6 @@
   "files": [
     "plugin/",
     ".claude-plugin/",
-    "assets/",
     "SUPPORT.md",
     "PRIVACY.md",
     "TERMS.md"
