@@ -18,5 +18,9 @@
     "communication"
   ],
   "icon": "./.claude-plugin/icon.png",
-  "privacyPolicyUrl": "https://github.com/domnovoz/quiet-coaching/blob/main/PRIVACY.md"
+  "privacyPolicyUrl": "https://github.com/domnovoz/quiet-coaching/blob/main/PRIVACY.md",
+  "displayName": "Quiet Coaching",
+  "supportUrl": "https://github.com/domnovoz/quiet-coaching/blob/main/SUPPORT.md",
+  "documentationUrl": "https://github.com/domnovoz/quiet-coaching#readme",
+  "termsOfServiceUrl": "https://github.com/domnovoz/quiet-coaching/blob/main/TERMS.md"
 }
