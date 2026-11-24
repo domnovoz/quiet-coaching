@@ -79,7 +79,7 @@ export function buildServer(env, user) {
 async function mcp(request, env, ctx) {
   const id = ctx.props?.userId;
   const user = id && await env.DB.prepare('SELECT id, daily_limit, reviewer FROM users WHERE id = ?').bind(id).first();
-  if (!user) return new Response('Account not found. Please reconnect Quiet Coaching.', { status: 401 });
+  if (!user) { console.error('mcp_no_user', id); return new Response('Account not found. Please reconnect Quiet Coaching.', { status: 401 }); }
   const server = buildServer(env, { ...user, reviewer: user.reviewer === 1 });
   const transport = new WebStandardStreamableHTTPServerTransport({ enableJsonResponse: true });
   await server.connect(transport);
@@ -162,11 +162,31 @@ function defaultHandler(origin) {
       const path = new URL(request.url).pathname;
       if (path === '/authorize') return authorize(request, env);
       if (path === '/account') return account(request, env);
+      if (path === '/admin/demo-approve') return demoApprove(request, env);
       if (path === '/' && request.method === 'GET') return html(landingPage(origin));
       if (path === '/health' && request.method === 'GET') return Response.json({ ok: true, version: VERSION });
       return new Response('Not found', { status: 404 });
     }
   };
+}
+
+// Owner-only: approve a pending sign-in for the dedicated review account without its password,
+// so the owner can connect a demo client from their own machine. Disabled unless ADMIN_SECRET is set.
+const DEMO_USER = 'reviewer-openai-reviewer';
+async function demoApprove(request, env) {
+  if (request.method !== 'POST' || !env.ADMIN_SECRET) return new Response('Not found', { status: 404 });
+  const given = (request.headers.get('Authorization') || '').replace(/^Bearer /, '');
+  const [a, b] = await Promise.all([given, env.ADMIN_SECRET].map(v => crypto.subtle.digest('SHA-256', new TextEncoder().encode(v))));
+  const same = new Uint8Array(a).every((x, i) => x === new Uint8Array(b)[i]);
+  if (!same || given.length < 32) return new Response('Unauthorized', { status: 401 });
+  const { handle } = await request.json().catch(() => ({}));
+  const pendingUrl = /^[0-9a-f-]{36}$/.test(String(handle)) ? await env.OAUTH_KV.get(`signin:${handle}`) : null;
+  if (!pendingUrl) return Response.json({ error: 'expired' }, { status: 400 });
+  const authRequest = await env.OAUTH_PROVIDER.parseAuthRequest(new Request(pendingUrl));
+  await env.OAUTH_KV.delete(`signin:${handle}`);
+  const { redirectTo } = await env.OAUTH_PROVIDER.completeAuthorization({ request: authRequest, userId: DEMO_USER, metadata: { username: 'openai-reviewer', via: 'owner-demo' }, scope: authRequest.scope, props: { userId: DEMO_USER } });
+  console.log('demo_approve', authRequest.clientId);
+  return Response.json({ redirectTo });
 }
 
 function provider(origin) {
@@ -200,7 +220,12 @@ export default {
     }
     const limited = await limitRequestBody(request);
     if (!limited) return new Response('Request too large', { status: 413, headers: { 'Cache-Control': 'no-store' } });
-    return provider(origin).fetch(limited, env, ctx);
+    const response = await provider(origin).fetch(limited, env, ctx);
+    if (response.status === 401 && url.pathname.startsWith('/mcp')) {
+      const auth = request.headers.get('Authorization') || '';
+      console.error('mcp_401', auth ? `bearer len ${auth.length}` : 'no auth header', response.headers.get('WWW-Authenticate'));
+    }
+    return response;
   },
   scheduled(event, env, ctx) { ctx.waitUntil(purgeExpired(env.DB)); }
 };
