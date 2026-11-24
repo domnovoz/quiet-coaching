@@ -87,7 +87,7 @@
       }
     }
   },
-  "name": "quiet-coaching",
+  "name": "quiet-coaching-insights",
   "version": "1.0.0",
   "description": "Coaching-informed conversation that supports your agency, with an optional Insights connection for excerpts you choose to share.",
   "author": {
